@@ -176,6 +176,8 @@ All credentials are stored in AWS Parameter Store and processed according to the
 
 ### Parameter Store Setup
 
+#### Using AWS CLI
+
 ```bash
 # Store credentials securely
 aws ssm put-parameter \
@@ -184,6 +186,30 @@ aws ssm put-parameter \
   --type "SecureString" \
   --region eu-west-1
 ```
+
+#### Using Terraform
+
+You can also add parameters through Terraform by configuring them in `terraform/deployment/parameter_store.tf`. But this might bring some security risks (e.g. pushing secrets to version control.).
+Here is an example:
+
+```hcl
+resource "aws_ssm_parameter" "my_api_token" {
+  name        = "/authru/tokens/my-api"
+  description = "API credentials for my-api"
+  type        = "SecureString"
+  value       = "your-username:your-password"
+
+  tags = merge(local.common_tags, {
+    Name = "authru-my-api-token"
+  })
+
+  lifecycle {
+    ignore_changes = [value] # Don't overwrite if manually updated
+  }
+}
+```
+
+To enable this example parameter creatino, set `create_example_parameter = true` in your `terraform.tfvars` file.
 
 ## Error Responses
 
