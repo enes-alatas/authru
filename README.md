@@ -11,6 +11,7 @@ A simple, serverless and stateless authentication gateway for client application
 
 ## Table of Contents
 
+- [Project Background](#project-background)
 - [Quick Start](#quick-start)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
@@ -48,6 +49,20 @@ A simple, serverless and stateless authentication gateway for client application
 - [Troubleshooting](#troubleshooting)
   - [Common Issues](#common-issues)
   - [Debug Mode](#debug-mode)
+- [Important Notice](#-important-notice)
+- [Contributing](#contributing)
+  - [How to Contribute](#how-to-contribute)
+  - [Areas for Contribution](#areas-for-contribution)
+  - [Development Setup](#development-setup)
+  - [Code Style](#code-style)
+  - [Reporting Issues](#reporting-issues)
+  - [Security Issues](#security-issues)
+
+## Project Background
+
+This project was built over weekends to solve a specific problem: the need for a simple, serverless authentication gateway that could securely proxy requests to third-party APIs while keeping authentication tokens server-side. It's designed to be lightweight, cost-effective, and easy to deploy.
+
+While functional and tested, it's important to understand that this is a personal project that may not have the same level of enterprise-grade features, support, or security hardening as commercial solutions.
 
 ## Quick Start
 
@@ -403,3 +418,49 @@ aws lambda update-function-configuration \
   --environment Variables='{LOG_LEVEL=DEBUG}'
 ```
 
+## ⚠️ Important Notice
+
+**This project is in early development stage and should be used with caution in production environments.**
+
+Before deploying to production, please consider:
+
+- **Security Review**: Conduct a thorough security audit of the authentication flow and CORS implementation
+- **Load Testing**: Test the system under expected production load
+- **Monitoring Setup**: Ensure comprehensive monitoring and alerting is in place
+- **Backup Strategy**: Implement proper backup and disaster recovery procedures
+- **Compliance**: Verify compliance with your organization's security policies and regulatory requirements
+
+## Contributing
+
+Any kind of contributions are welcome! This project was built to solve a specific need, but there's always room for improvement.
+
+### How to Contribute
+
+1. **Fork the repository**
+2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
+3. **Make your changes** and ensure tests pass
+4. **Commit your changes**: `git commit -m 'Add some amazing feature'`
+5. **Push to the branch**: `git push origin feature/amazing-feature`
+6. **Open a Pull Request**
+
+### Code Style
+
+- Follow Python PEP 8 guidelines
+- Use type hints where appropriate
+- Add docstrings for public functions
+- Include tests for new functionality
+- Update documentation for new features
+
+### Reporting Issues
+
+When reporting issues, please include:
+
+- **Environment details**: Python version, AWS region, deployment method
+- **Configuration**: Relevant parts of your configuration files (sanitized)
+- **Error logs**: Full error messages and stack traces
+- **Steps to reproduce**: Clear steps to reproduce the issue
+- **Expected vs actual behavior**: What you expected vs what happened
+
+### Security Issues
+
+If you discover a security vulnerability, please **do not** open a public issue. Instead, please contact the maintainer directly with details about the vulnerability.
