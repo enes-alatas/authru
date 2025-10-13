@@ -1,0 +1,30 @@
+# Example Terraform Variables
+# Copy this file to terraform.tfvars and customize for your environment
+
+# AWS Configuration
+aws_region = "eu-west-1"
+environment = "dev"
+
+# Lambda Configuration
+lambda_memory_size = 256
+lambda_timeout     = 30
+
+# Logging Configuration
+log_retention_days = 7
+enable_api_gateway_logging = true
+
+# Monitoring Configuration
+enable_xray_tracing = false
+
+# API Gateway Configuration
+api_stage_name = "prod"
+
+# Parameter Store Configuration
+create_example_parameter = true
+
+# S3 Configuration Source (optional)
+# Set to true to use S3 for configuration instead of Lambda Layer
+use_s3_config = false
+# config_s3_bucket_name = ""  # Leave empty for auto-generated name
+# config_s3_key = "routes.json"
+# upload_config_to_s3 = true
