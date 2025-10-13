@@ -1,0 +1,31 @@
+{
+  "routes": [
+    {
+      "name": "vuliz-api",
+      "pathPattern": "/api/vuliz/*",
+      "targetBaseUrl": "https://vuliz.alatas.dev/",
+      "authentication": {
+        "scheme": "Basic",
+        "parameterName": "/authru/tokens/vuliz-api"
+      },
+      "policies": {
+        "timeout": 30000,
+        "retries": 3
+      }
+    }
+  ],
+  "security": {
+    "allowedOrigins": [
+      "https://authru.alatas.dev"
+    ],
+    "corsEnabled": true,
+    "allowCredentials": false
+  },
+  "monitoring": {
+    "logRetentionDays": 7,
+    "logLevel": "INFO",
+    "enableMetrics": true,
+    "enableTracing": false
+  }
+}
+
