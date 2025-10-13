@@ -9,6 +9,46 @@ A simple, serverless and stateless authentication gateway for client application
 - 📊 **Cost-Optimized Monitoring**: CloudWatch with configurable retention policies
 - 🔧 **Extensible Configuration**: JSON-based routing and policy system
 
+## Table of Contents
+
+- [Quick Start](#quick-start)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Request Flow](#request-flow)
+- [Configuration](#configuration)
+  - [Route Configuration](#route-configuration)
+    - [Route Fields](#route-fields)
+  - [Security Configuration](#security-configuration)
+    - [Security Fields](#security-fields)
+  - [Monitoring Configuration](#monitoring-configuration)
+- [API Endpoints](#api-endpoints)
+  - [Proxy Endpoint](#proxy-endpoint)
+    - [Request Headers](#request-headers)
+    - [Response](#response)
+    - [Example](#example)
+  - [CORS Preflight](#cors-preflight)
+    - [Response Headers](#response-headers-1)
+- [Authentication](#authentication)
+  - [Parameter Store Setup](#parameter-store-setup)
+    - [Using AWS CLI](#using-aws-cli)
+    - [Using Terraform](#using-terraform)
+- [Error Responses](#error-responses)
+  - [Common Error Codes](#common-error-codes)
+- [Path Matching](#path-matching)
+- [CORS Support](#cors-support)
+  - [Allowed Origins](#allowed-origins)
+  - [Preflight Handling](#preflight-handling)
+- [Monitoring and Logging](#monitoring-and-logging)
+  - [CloudWatch Logs](#cloudwatch-logs)
+  - [Metrics](#metrics)
+  - [Cost Optimization](#cost-optimization)
+- [Security Considerations](#security-considerations)
+  - [Best Practices](#best-practices)
+  - [IAM Permissions](#iam-permissions)
+- [Troubleshooting](#troubleshooting)
+  - [Common Issues](#common-issues)
+  - [Debug Mode](#debug-mode)
+
 ## Quick Start
 
 ### Prerequisites
