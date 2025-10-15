@@ -105,7 +105,7 @@ class ProxyService:
 
             # Prepare response headers (remove hop-by-hop headers)
             response_headers = self._prepare_headers(dict(response.headers))
-
+            response_headers.update(cors_handler.get_cors_headers(origin))
             logger.info(
                 "Received response from %s", target_url,
                 extra={
