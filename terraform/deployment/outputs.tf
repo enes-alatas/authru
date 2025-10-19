@@ -30,9 +30,14 @@ output "lambda_log_group_name" {
   value       = aws_cloudwatch_log_group.lambda_logs.name
 }
 
-output "api_gateway_log_group_name" {
-  description = "API Gateway CloudWatch Log Group name"
-  value       = aws_cloudwatch_log_group.api_gateway_logs.name
+output "api_gateway_access_log_group_name" {
+  description = "API Gateway CloudWatch Access Log Group name"
+  value       = aws_cloudwatch_log_group.api_gateway_access_logs.name
+}
+
+output "api_gateway_execution_log_group_name" {
+  description = "API Gateway CloudWatch Execution Log Group name"
+  value       = aws_cloudwatch_log_group.api_gateway_execution_logs.name
 }
 
 # S3 Configuration Bucket Outputs

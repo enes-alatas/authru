@@ -1,8 +1,20 @@
 # API Gateway Resources
 
-# API Gateway CloudWatch Log Group
-resource "aws_cloudwatch_log_group" "api_gateway_logs" {
-  name              = "/aws/apigateway/${local.api_name}"
+# API Gateway CloudWatch Log Group (Access Logs)
+resource "aws_cloudwatch_log_group" "api_gateway_access_logs" {
+  name              = "/aws/apigateway/access-logs/${local.api_name}"
+  retention_in_days = var.log_retention_days
+  lifecycle {
+    prevent_destroy = false
+    ignore_changes  = [name]
+  }
+  tags = local.common_tags
+}
+
+# API Gateway CloudWatch Log Group (Execution Logs)
+resource "aws_cloudwatch_log_group" "api_gateway_execution_logs" {
+  count             = var.enable_api_gateway_logging ? 1 : 0
+  name              = "API-Gateway-Execution-Logs_${aws_api_gateway_rest_api.proxy_api.id}/${var.api_stage_name}"
   retention_in_days = var.log_retention_days
   lifecycle {
     prevent_destroy = false
@@ -197,7 +209,7 @@ resource "aws_api_gateway_stage" "proxy_stage" {
   dynamic "access_log_settings" {
     for_each = var.enable_api_gateway_logging ? [1] : []
     content {
-      destination_arn = aws_cloudwatch_log_group.api_gateway_logs.arn
+      destination_arn = aws_cloudwatch_log_group.api_gateway_access_logs.arn
       format = jsonencode({
         requestId      = "$context.requestId"
         ip             = "$context.identity.sourceIp"
@@ -217,7 +229,8 @@ resource "aws_api_gateway_stage" "proxy_stage" {
 
   depends_on = [
     aws_api_gateway_deployment.proxy_deployment,
-    aws_cloudwatch_log_group.api_gateway_logs,
+    aws_cloudwatch_log_group.api_gateway_access_logs,
+    aws_cloudwatch_log_group.api_gateway_execution_logs,
   ]
 
   tags = local.common_tags
